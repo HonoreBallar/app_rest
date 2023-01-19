@@ -1,6 +1,6 @@
 api_platform:
     title: 'API rest for blog'
-    description: "Un api rest pour la gestion d'un blog created by <i>Amounan Honoré</i>"
+    description: "Un api rest pour la gestion d'un blog created by <i><b>Amounan Honoré</b></i>"
     show_webby: false
     openapi:
         contact:
