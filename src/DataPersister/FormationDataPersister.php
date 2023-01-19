@@ -25,7 +25,7 @@ class FormationDataPersister implements ContextAwareDataPersisterInterface
         if(!$data->getId()){
             $data->setCreatedAt(new \DateTimeImmutable());
         }
-        $data->setUpdated(new \DateTimeImmutable());
+        $data->setUpdatedAt(new \DateTimeImmutable());
 
         $this->entityManager->persist($data);
         $this->entityManager->flush();
