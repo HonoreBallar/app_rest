@@ -1,0 +1,14 @@
+api_platform:
+    title: 'API rest for blog'
+    description: "Un api rest pour la gestion d'un blog created by <i>Amounan Honoré</i>"
+    show_webby: false
+    openapi:
+        contact:
+            name: "Amounan Honoré"
+    version: '1.0.0'
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
