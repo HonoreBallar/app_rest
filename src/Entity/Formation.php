@@ -8,26 +8,35 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups'=>['formation:read']],
+    denormalizationContext: ['groups'=>['formation:write']]
+)]
 class Formation
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['formation:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['formation:read', 'formation:write'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['formation:read', 'formation:write'])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['formation:read', 'formation:write'])]
     private ?string $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['formation:read', 'formation:write'])]
     private ?string $icon = null;
 
     #[ORM\Column(nullable: true)]
@@ -37,9 +46,11 @@ class Formation
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['formation:read'])]
     private ?int $visitor = null;
 
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Comment::class)]
+    #[Groups(['formation:read','comment:read'])]
     private Collection $comments;
 
     public function __construct()
