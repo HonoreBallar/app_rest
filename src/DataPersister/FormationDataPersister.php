@@ -34,7 +34,7 @@ class FormationDataPersister implements ContextAwareDataPersisterInterface
     
     public function remove($data, array $context = [])
     {
-        $this->entityManager->persist($data);
+        $this->entityManager->remove($data);
         $this->entityManager->flush();
     }
 }

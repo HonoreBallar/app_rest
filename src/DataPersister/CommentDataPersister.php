@@ -33,6 +33,6 @@ class CommentDataPersister implements ContextAwareDataPersisterInterface
     public function remove($data, array $context = [])
     {
         $this->entityManager->remove($data);
-        $this->entityManager->flush($data);
+        $this->entityManager->flush();
     }
 }
