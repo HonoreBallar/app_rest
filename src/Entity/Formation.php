@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Asset;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 #[ApiResource(
@@ -25,6 +26,8 @@ class Formation
 
     #[ORM\Column(length: 255)]
     #[Groups(['formation:read', 'formation:write'])]
+    #[Asset\NotBlank(message: "Le titre de la formation ne doit être nul")]
+    #[Asset\Length(min: 3, max: 255, minMessage: "Le titre doit faire {{limit}} caratères")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
